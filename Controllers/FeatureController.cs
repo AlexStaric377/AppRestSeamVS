@@ -43,7 +43,7 @@ namespace AppRestSeam.Controllers
                 List<Feature> _listfeature = await db.Features.Where(x => x.KeyComplaint == KeyComplaint).OrderBy(x => x.KeyFeature).ToListAsync();
                 return Ok(_listfeature);
             }
-            if (KeyFeature.Trim().Length != 0)
+            if (KeyFeature != "0")
             { 
                Feature _featurek = await db.Features.FirstOrDefaultAsync(x => x.KeyFeature == KeyFeature);
                return Ok(_featurek); 

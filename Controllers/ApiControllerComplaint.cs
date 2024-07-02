@@ -42,11 +42,16 @@ namespace AppRestSeam.Controllers
         }
  
         // GET api/<ApiControllerComplaint>/5
-        [HttpGet("{KeyComplaint}")]
-        public async Task<ActionResult<Complaint>> Get(string KeyComplaint)
+        [HttpGet("{KeyComplaint}/{PoiskComplaint}")]
+        public async Task<ActionResult<Complaint>> Get(string KeyComplaint, string PoiskComplaint)
         {
 
-            if (KeyComplaint.Trim().Length == 0) { return NotFound(); }
+            if (KeyComplaint == "0" && PoiskComplaint == "0") { return NotFound(); }
+            if (KeyComplaint == "0")
+            {
+                List<Complaint> _listComplaint = await db.Complaints.Where(x => x.Name.Contains(PoiskComplaint)).ToListAsync();
+                return Ok(_listComplaint);
+            }
             Complaint _complaint = await db.Complaints.FirstOrDefaultAsync(x => x.KeyComplaint == KeyComplaint);
             return Ok(_complaint);
 
