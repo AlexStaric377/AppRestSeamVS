@@ -158,3 +158,6 @@
 {"id":158,"keyFeature":"A.000.013","kodDetailing":"A.000.013.007","keyGrDetailing":"","nameDetailing":"Відчуття наявнеості рани в носі"}
 {"id":159,"keyFeature":"A.000.013","kodDetailing":"A.000.013.008","keyGrDetailing":"","nameDetailing":"Головна біль на лобі"}
 {"id":160,"keyFeature":"A.000.013","kodDetailing":"A.000.013.009","keyGrDetailing":"","nameDetailing":"свербіння в вухах"}
+{"id":0,"keyFeature":"B.000.001","kodDetailing":"B.000.001.001","keyGrDetailing":"YFF.000","nameDetailing":"Деталізація біль у горлі","idUser":"Admin"}
+{"id":317,"keyFeature":"B.000.001","keyGrDetailing":"YEE.000","kodDetailing":"B.000.001.001","nameDetailing":"","idUser":""}
+{"id":317,"keyFeature":"B.000.001","keyGrDetailing":"YFF.000","kodDetailing":"B.000.001.001","nameDetailing":"","idUser":""}

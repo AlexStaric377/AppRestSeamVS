@@ -39,11 +39,16 @@ namespace AppRestSeam.Controllers
 
         // GET api/<GrupDiagnozController>/5
         
-        [HttpGet("{IcdGrDiagnoz}")]
-        public async Task<ActionResult<GrupDiagnoz>> Get(string IcdGrDiagnoz)
+        [HttpGet("{IcdGrDiagnoz}/{PoiskGrDiagnoz}")]
+        public async Task<ActionResult<GrupDiagnoz>> Get(string IcdGrDiagnoz, string PoiskGrDiagnoz)
         {
 
-            if (IcdGrDiagnoz.Trim().Length == 0) { return NotFound(); }
+            if (IcdGrDiagnoz.Trim() == "0" && PoiskGrDiagnoz.Trim() == "0") { return NotFound(); }
+            if (IcdGrDiagnoz.Trim() == "0")
+            {
+                List<GrupDiagnoz> _listGrupDiagnoz = await db.GrupDiagnozs.Where(x => x.NameGrDiagnoz.Contains(PoiskGrDiagnoz)).ToListAsync();
+                return Ok(_listGrupDiagnoz);
+            }
             GrupDiagnoz _detailing = await db.GrupDiagnozs.FirstOrDefaultAsync(x => x.IcdGrDiagnoz == IcdGrDiagnoz);
             return Ok(_detailing);
 
