@@ -37,11 +37,17 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<ControllerListGroupDetail>/5
-        [HttpGet("{KeyGrDetailing}")]
-        public async Task<ActionResult<ListGrDetailing>> Get(string KeyGrDetailing)
+        [HttpGet("{KeyGrDetailing}/{PoiskGrDetailing}")]
+        public async Task<ActionResult<ListGrDetailing>> Get(string KeyGrDetailing, string PoiskGrDetailing)
         {
 
-            if (KeyGrDetailing.Trim().Length == 0) { return NotFound(); }
+            if (KeyGrDetailing.Trim() == "0" && PoiskGrDetailing.Trim() == "0") { return NotFound(); }
+            if (PoiskGrDetailing != "0")
+            {
+                List<ListGrDetailing> _listdetailing = new List<ListGrDetailing>();
+                _listdetailing = await db.ListGrDetailings.Where(x => x.NameGrup.Contains(PoiskGrDetailing) == true).ToListAsync();
+                return Ok(_listdetailing);
+            }
             ListGrDetailing _grDetailing = await db.ListGrDetailings.FirstOrDefaultAsync(x => x.KeyGrDetailing == KeyGrDetailing);
             return Ok(_grDetailing);
 

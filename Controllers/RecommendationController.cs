@@ -35,11 +35,16 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<RecommendationController>/5
-        [HttpGet("{KodRecommendation}")]
-        public async Task<ActionResult<Recommendation>> Get(string KodRecommendation)
+        [HttpGet("{KodRecommendation}/{PoiskRecommendation}")]
+        public async Task<ActionResult<Recommendation>> Get(string KodRecommendation, string PoiskRecommendation)
         {
-
-            if (KodRecommendation.Trim().Length == 0) { return NotFound(); }
+ 
+            if (KodRecommendation.Trim() == "0" && PoiskRecommendation.Trim() == "0") { return NotFound(); }
+            if (KodRecommendation.Trim() == "0")
+            {
+                List<Recommendation> _listRecommendation = await db.Recommendations.Where(x => x.ContentRecommendation.Contains(PoiskRecommendation)).ToListAsync();
+                return Ok(_listRecommendation);
+            }
             Recommendation _detailing = await db.Recommendations.FirstOrDefaultAsync(x => x.KodRecommendation == KodRecommendation);
             return Ok(_detailing);
 

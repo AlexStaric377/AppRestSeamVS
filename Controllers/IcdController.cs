@@ -50,7 +50,7 @@ namespace AppRestSeam.Controllers
             if (NameGrIcd != "0")
             {
                 List<Icd> _listdetailing = new List<Icd>();
-                _listdetailing = await db.Icds.Where(x => x.KeyIcd.Contains(NameGrIcd) == true ).ToListAsync();
+                _listdetailing = await db.Icds.Where(x => x.Name.Contains(NameGrIcd) == true ).ToListAsync();
                 return Ok(_listdetailing); 
             }
             return Ok(_detailing);
