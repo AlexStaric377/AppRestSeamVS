@@ -43,7 +43,7 @@ namespace AppRestSeam.Controllers
             if (KodDoctor == "0" && Edrpou == "0" && PoiskDoctor.Trim() == "0") return NotFound(); 
             if (PoiskDoctor.Trim() != "0")
             {
-                List<Doctor> _listDoctor = await db.Doctors.Where(x => x.Name.Contains(PoiskDoctor) == true).ToListAsync();
+                List<Doctor> _listDoctor = await db.Doctors.Where(x => x.Surname.Contains(PoiskDoctor) == true).ToListAsync();
                 return Ok(_listDoctor);
             }
             if (Edrpou != "0") 
