@@ -37,26 +37,26 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<ApiControllerDoctor>/5
-        [HttpGet("{KodDoctor}/{Edrpou}")]
-        public async Task<ActionResult<Doctor>> Get(string KodDoctor, string Edrpou)
+        [HttpGet("{KodDoctor}/{Edrpou}/{PoiskDoctor}")]
+        public async Task<ActionResult<Doctor>> Get(string KodDoctor, string Edrpou, string PoiskDoctor)
         {
- 
-            if (KodDoctor == "0")
+            if (KodDoctor == "0" && Edrpou == "0" && PoiskDoctor.Trim() == "0") return NotFound(); 
+            if (PoiskDoctor.Trim() != "0")
             {
-                if (Edrpou == "0") { return NotFound(); }
-                else
-                {
-                    List<Doctor> _doctor = await db.Doctors.Where(x => x.Edrpou == Edrpou).OrderBy(x => x.KodDoctor).ToListAsync();
-                    return Ok(_doctor);
-                }
+                List<Doctor> _listDoctor = await db.Doctors.Where(x => x.Name.Contains(PoiskDoctor) == true).ToListAsync();
+                return Ok(_listDoctor);
             }
-            else
+            if (Edrpou != "0") 
             {
-                Doctor _doctor = await db.Doctors.FirstOrDefaultAsync(x => x.KodDoctor == KodDoctor);
-                return Ok(_doctor);
+                List<Doctor> _listdoctor = await db.Doctors.Where(x => x.Edrpou == Edrpou).OrderBy(x => x.KodDoctor).ToListAsync();
+                return Ok(_listdoctor);
             }
-            
-            
+            Doctor _doctor = new Doctor();
+            if (KodDoctor != "0")
+            {
+                _doctor = await db.Doctors.FirstOrDefaultAsync(x => x.KodDoctor == KodDoctor);
+            }
+            return Ok(_doctor);           
 
         }
 

@@ -35,8 +35,8 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<FeatureController>/5 поиск карточки описания характера,особености симптома жалобы 
-        [HttpGet("{KeyFeature}/{KeyComplaint}")]
-        public async Task<ActionResult<Feature>> Get(string KeyFeature, string KeyComplaint)
+        [HttpGet("{KeyFeature}/{KeyComplaint}/{PoiskNameFeature}")]
+        public async Task<ActionResult<Feature>> Get(string KeyFeature, string KeyComplaint, string PoiskNameFeature)
         {
             if (KeyComplaint != "0")
             {
@@ -48,7 +48,13 @@ namespace AppRestSeam.Controllers
                Feature _featurek = await db.Features.FirstOrDefaultAsync(x => x.KeyFeature == KeyFeature);
                return Ok(_featurek); 
             }
-            var _feature = new JsonResult(await db.Features.ToListAsync());
+            if (PoiskNameFeature != "0")
+            {
+                List<Feature> _listfeature = await db.Features.Where(x => x.Name.Contains(PoiskNameFeature)).ToListAsync();
+                return Ok(_listfeature);
+            }
+
+            var _feature = new JsonResult(await db.Features.OrderBy(x => x.KeyComplaint).OrderBy(x => x.KeyFeature).ToListAsync());
             return Ok(_feature);
 
         }

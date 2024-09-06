@@ -37,8 +37,8 @@ namespace AppRestSeam.Controllers
         }
        
         // GET api/<DetailingController>/5
-        [HttpGet("{KodDetailing}/{KeyFeature}")]
-        public async Task<ActionResult<Detailing>> Get(string KodDetailing, string KeyFeature)
+        [HttpGet("{KodDetailing}/{KeyFeature}/{PoiskNameDetailing}")]
+        public async Task<ActionResult<Detailing>> Get(string KodDetailing, string KeyFeature, string PoiskNameDetailing)
         {
             if (KodDetailing.Trim() != "0")
             {
@@ -51,7 +51,13 @@ namespace AppRestSeam.Controllers
                 List<Detailing> _listdetailing = await db.Detailings.Where(x => x.KeyFeature == KeyFeature).OrderBy(x => x.KodDetailing).ToListAsync();
                 return Ok(_listdetailing);
             }
-            var _detailing = new JsonResult(await db.Detailings.ToListAsync());
+            if (PoiskNameDetailing.Trim() != "0")
+            {
+                List<Detailing> _listdetailing = await db.Detailings.Where(x => x.NameDetailing.Contains(PoiskNameDetailing) == true).ToListAsync();
+                return Ok(_listdetailing);
+            }
+
+            var _detailing = new JsonResult(await db.Detailings.OrderBy(x => x.KodDetailing).ToListAsync());
             return Ok(_detailing);
 
         }

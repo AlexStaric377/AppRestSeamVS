@@ -36,22 +36,30 @@ namespace AppRestSeam.Controllers
         }
   
         // GET api/<GrDetalingController>/5
-        [HttpGet("{KodDetailing}/{KeyGrDetailing}")]
-        public async Task<ActionResult<GrDetailing>> Get(string KodDetailing, string KeyGrDetailing)
+        [HttpGet("{KodDetailing}/{KeyGrDetailing}/{PoiskNameGrDetailing}")]
+        public async Task<ActionResult<GrDetailing>> Get(string KodDetailing, string KeyGrDetailing, string PoiskNameGrDetailing)
         {
-            if (KeyGrDetailing.Trim() == "0")
+            if (KodDetailing.Trim() == "0" && KeyGrDetailing.Trim() == "0" && PoiskNameGrDetailing.Trim() == "0") { return NotFound(); }
+            if (KeyGrDetailing.Trim() != "0")
             {
-                if (KodDetailing.Trim() == "0") { return NotFound(); }
-                GrDetailing _detailing = await db.GrDetailings.FirstOrDefaultAsync(x => x.KodDetailing == KodDetailing);
-                return Ok(_detailing);
+               List<GrDetailing> _listdetailing = await db.GrDetailings.Where(x => x.KeyGrDetailing == KeyGrDetailing).OrderBy(x => x.KodDetailing).ToListAsync();
+               return Ok(_listdetailing);
+ 
             }
-            else
+            if (KodDetailing.Trim() != "0")
             {
-                List<GrDetailing> _listdetailing = await db.GrDetailings.Where(x => x.KeyGrDetailing == KeyGrDetailing).OrderBy(x => x.KodDetailing).ToListAsync();
+                GrDetailing _detailingk = await db.GrDetailings.FirstOrDefaultAsync(x => x.KodDetailing == KodDetailing);
+                return Ok(_detailingk);
+            }
+
+            if (PoiskNameGrDetailing.Trim() != "0")
+            {
+                List<GrDetailing> _listdetailing = await db.GrDetailings.Where(x => x.NameGrDetailing.Contains(PoiskNameGrDetailing) == true).ToListAsync();
                 return Ok(_listdetailing);
             }
-  
 
+            List<GrDetailing> _detailing = await db.GrDetailings.OrderBy(x => x.KodDetailing).ToListAsync();
+            return Ok(_detailing);
         }
 
         // POST api/<GrDetalingController> создание новых  строк описания ргупповой детализации симптома

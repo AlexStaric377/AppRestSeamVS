@@ -433,6 +433,7 @@ namespace AppRestSeam.Models
 
     }
 
+    // справочник пользователей стстемы
     public class AccountUser
     {
         public int Id { get; set; }
@@ -444,6 +445,7 @@ namespace AppRestSeam.Models
 
     }
 
+    // справочник статуса пользователей стстемы
     public class NsiStatusUser
     {
 

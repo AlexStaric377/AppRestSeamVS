@@ -36,12 +36,18 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<GroupQualificationController>/5
-        [HttpGet("{KodGroupQualification}")]
-        public async Task<ActionResult<ListGroupQualification>> Get(string KodGroupQualification)
+        [HttpGet("{KodGroupQualification}/{PoiskGroupQualification}")]
+        public async Task<ActionResult<ListGroupQualification>> Get(string KodGroupQualification, string PoiskGroupQualification)
         {
 
-            if (KodGroupQualification.Trim().Length == 0) { return NotFound(); }
-            ListGroupQualification _detailing = await db.ListGroupQualifications.FirstOrDefaultAsync(x => x.KodGroupQualification == KodGroupQualification);
+            if (KodGroupQualification.Trim() == "0" && PoiskGroupQualification.Trim() == "0") { return NotFound(); }
+            ListGroupQualification _detailing = new ListGroupQualification();
+            if (PoiskGroupQualification.Trim() != "0")
+            {
+                List<ListGroupQualification> _listGroupQualification = await db.ListGroupQualifications.Where(x => x.NameGroupQualification.Contains(PoiskGroupQualification) == true).ToListAsync();
+                return Ok(_listGroupQualification);
+            }
+            if (KodGroupQualification.Trim() != "0")_detailing = await db.ListGroupQualifications.FirstOrDefaultAsync(x => x.KodGroupQualification == KodGroupQualification);  
             return Ok(_detailing); ;
 
         }

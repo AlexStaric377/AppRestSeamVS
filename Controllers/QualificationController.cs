@@ -36,22 +36,25 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<QualificationController>/5
-        [HttpGet("{KodQualification}/{KodGroupQualification}")]
-        public async Task<ActionResult<Qualification>> Get(string KodQualification, string KodGroupQualification)
+        [HttpGet("{KodQualification}/{KodGroupQualification}/{PoisknameQualification}")]
+        public async Task<ActionResult<Qualification>> Get(string KodQualification, string KodGroupQualification, string PoisknameQualification)
         {
-            if (KodGroupQualification == "0")
-            {
-                if (KodQualification.Trim().Length == 0) { return NotFound(); }
-                Qualification _detailing = await db.Qualifications.FirstOrDefaultAsync(x => x.KodQualification == KodQualification);
-                return Ok(_detailing);
-            }
-            else
-            {
-                List<Qualification> _detailing = await db.Qualifications.Where(x => x.KodGroupQualification == KodGroupQualification).OrderBy(x => x.KodQualification).ToListAsync();
-                return Ok(_detailing);
-            }
+            if (KodQualification.Trim() == "0" && KodGroupQualification == "0" && PoisknameQualification == "0") { return NotFound(); }
 
-
+            Qualification _detailing = new Qualification();
+ 
+            if (KodGroupQualification != "0")
+            {
+                List<Qualification> _grdetailing = await db.Qualifications.Where(x => x.KodGroupQualification == KodGroupQualification).OrderBy(x => x.KodQualification).ToListAsync();
+                return Ok(_grdetailing);
+            }
+            if (PoisknameQualification.Trim() != "0")
+            {
+                List<Qualification> _listGroupQualification = await db.Qualifications.Where(x => x.NameQualification.Contains(PoisknameQualification) == true).ToListAsync();
+                return Ok(_listGroupQualification);
+            }
+            if (KodQualification.Trim() != "0") _detailing = await db.Qualifications.FirstOrDefaultAsync(x => x.KodQualification == KodQualification);
+            return Ok(_detailing);
         }
 
         // POST api/<QualificationController>
