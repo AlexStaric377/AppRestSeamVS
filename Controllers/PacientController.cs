@@ -66,43 +66,43 @@ namespace AppRestSeam.Controllers
                 List<Pacient> _listdetailing = new List<Pacient>();
                 if (NamePacient != "0" && SurnamePacient == "0" && TelefonPacient == "0")
                 {
-                    _listdetailing = await db.Pacients.Where(x => x.Name.StartsWith(NamePacient)).ToListAsync();
+                    _listdetailing = await db.Pacients.Where(x => x.Name.Contains(NamePacient)).ToListAsync();
                 }
                 else
                 {
                     if (NamePacient == "0" && SurnamePacient != "0" && TelefonPacient == "0")
                     {
-                        _listdetailing = await db.Pacients.Where(x => x.Surname.StartsWith(SurnamePacient)).ToListAsync();
+                        _listdetailing = await db.Pacients.Where(x => x.Surname.Contains(SurnamePacient)).ToListAsync();
                     }
                     else
                     {
                         if (NamePacient == "0" && SurnamePacient == "0" && TelefonPacient != "0")
                         {
-                            _listdetailing = await db.Pacients.Where(x => x.Tel.StartsWith(TelefonPacient)).ToListAsync();
+                            _listdetailing = await db.Pacients.Where(x => x.Tel.Contains(TelefonPacient)).ToListAsync();
                         }
                         else
                         {
                             if (NamePacient != "0" && SurnamePacient != "0" && TelefonPacient == "0")
                             {
-                                _listdetailing = await db.Pacients.Where(x => x.Name.StartsWith(NamePacient) && x.Surname.StartsWith(SurnamePacient)).ToListAsync();
+                                _listdetailing = await db.Pacients.Where(x => x.Name.Contains(NamePacient) && x.Surname.StartsWith(SurnamePacient)).ToListAsync();
                             }
                             else
                             {
                                 if (NamePacient != "0" && SurnamePacient == "0" && TelefonPacient != "0")
                                 {
-                                    _listdetailing = await db.Pacients.Where(x => x.Name.StartsWith(NamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
+                                    _listdetailing = await db.Pacients.Where(x => x.Name.Contains(NamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
                                 }
                                 else
                                 {
                                     if (NamePacient == "0" && SurnamePacient != "0" && TelefonPacient != "0")
                                     {
-                                        _listdetailing = await db.Pacients.Where(x => x.Surname.StartsWith(SurnamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
+                                        _listdetailing = await db.Pacients.Where(x => x.Surname.Contains(SurnamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
                                     }
                                     else
                                     { 
                                         if (NamePacient != "0" && SurnamePacient != "0" && TelefonPacient != "0")
                                         {
-                                            _listdetailing = await db.Pacients.Where(x => x.Name.StartsWith(NamePacient) && x.Surname.StartsWith(SurnamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
+                                            _listdetailing = await db.Pacients.Where(x => x.Name.Contains(NamePacient) && x.Surname.StartsWith(SurnamePacient) && x.Tel.StartsWith(TelefonPacient)).ToListAsync();
                                         }                                      
                                     }
                                  
