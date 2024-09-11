@@ -36,21 +36,25 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<DiagnozController>/5
-        [HttpGet("{KodDiagnoza}/{IcdGrDiagnoz}")]
-        public async Task<ActionResult<Diagnoz>> Get(string KodDiagnoza, string IcdGrDiagnoz)
+        [HttpGet("{KodDiagnoza}/{IcdGrDiagnoz}/{PoiskDiagnoz}")]
+        public async Task<ActionResult<Diagnoz>> Get(string KodDiagnoza, string IcdGrDiagnoz ,string PoiskDiagnoz)
         {
-            Diagnoz _diagnoz = new Diagnoz();
-            if (KodDiagnoza.Trim() == "0" && IcdGrDiagnoz.Trim() == "0") { return NotFound(); }
+            List<Diagnoz> _listdiagnoz = new  List<Diagnoz>();
+            if (KodDiagnoza.Trim() == "0" && IcdGrDiagnoz.Trim() == "0" && PoiskDiagnoz.Trim() == "0") { return NotFound(); }
+            if (PoiskDiagnoz.Trim() != "0")
+            {
+                _listdiagnoz = await db.Diagnozs.Where(x => x.NameDiagnoza.Contains(PoiskDiagnoz)).ToListAsync();
+            }
             if (KodDiagnoza.Trim() != "0")
-            { 
-                _diagnoz = await db.Diagnozs.FirstOrDefaultAsync(x => x.KodDiagnoza == KodDiagnoza);
+            {
+                Diagnoz _diagnoz = await db.Diagnozs.FirstOrDefaultAsync(x => x.KodDiagnoza == KodDiagnoza);
+                return Ok(_diagnoz);
             }
             if (IcdGrDiagnoz.Trim() != "0")
             {
-                List<Diagnoz> _listdiagnoz = await db.Diagnozs.Where(x => x.IcdGrDiagnoz == IcdGrDiagnoz).OrderBy(x => x.KodDiagnoza).ToListAsync();
-                return Ok(_listdiagnoz);
+                _listdiagnoz = await db.Diagnozs.Where(x => x.IcdGrDiagnoz == IcdGrDiagnoz).OrderBy(x => x.KodDiagnoza).ToListAsync();
             }
-            return Ok(_diagnoz);
+            return Ok(_listdiagnoz);
         }
 
         // POST api/<DiagnozController>
