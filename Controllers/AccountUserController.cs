@@ -38,17 +38,23 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<AccountUserController>/5
-        [HttpGet("{IdUser}/{Login}/{Password}")]
-        public async Task<ActionResult<AccountUser>> Get(string IdUser, string Login, string Password)
+        [HttpGet("{IdUser}/{Login}/{Password}/{PoiskUser}")]
+        public async Task<ActionResult<AccountUser>> Get(string IdUser, string Login, string Password, string PoiskUser)
         {
             AccountUser _detailing = new AccountUser();
-            if (IdUser.Trim() == "0" && Login.Trim() == "0" && Password.Trim() == "0") { return NotFound(); }
+            if (IdUser.Trim() == "0" && Login.Trim() == "0" && Password.Trim() == "0" && PoiskUser.Trim() == "0") { return NotFound(); }
+
+            if (PoiskUser.Trim() != "0")
+            { 
+                List <AccountUser> _listdetailing = await db.AccountUsers.Where(x => x.Login.Contains(PoiskUser)).ToListAsync();
+                return Ok(_listdetailing);
+            } 
+
             if (IdUser.Trim() != "0")
             { 
                 _detailing = await db.AccountUsers.FirstOrDefaultAsync(x => x.IdUser == IdUser);
             }
-            if (Login.Trim() == "0") { return NotFound(); }
-            //if (Password.Trim() == "0") { return NotFound(); }
+            
             if (Login.Trim() != "0" && Password.Trim() != "0")
             {
                 _detailing = await db.AccountUsers.FirstOrDefaultAsync(x => x.Login == Login && x.Password == Password);

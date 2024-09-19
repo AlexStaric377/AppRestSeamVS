@@ -37,26 +37,27 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<SobController>/5
-        [HttpGet("{KodObl}/{Id}")]
-        public async Task<ActionResult<Sob>> Get(string KodObl, string Id)
+        [HttpGet("{KodObl}/{Id}/{PoiskObl}")]
+        public async Task<ActionResult<Sob>> Get(string KodObl, string Id, string PoiskObl)
         {
             
-            if (KodObl.Trim().Length == 0 && Convert.ToInt32(Id) == 0) { return NotFound(); }
-            if (Convert.ToInt32(Id) != 0)
+            if (KodObl.Trim() == "0" && Id.Trim() == "0" && PoiskObl.Trim() == "0") { return NotFound(); }
+            List<Sob> _listdetailing = new List<Sob>();
+            if (PoiskObl.Trim() != "0")
+            { 
+                _listdetailing = await db.Sobs.Where(x => x.NameObl.Contains(PoiskObl)).ToListAsync();
+                return Ok(_listdetailing);
+            } 
+            if (Id.Trim() != "0")
             {
-                Sob _detailing = new Sob();
-                _detailing = await db.Sobs.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(Id));
+                Sob _detailing = await db.Sobs.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(Id));
                 return Ok(_detailing);
             }
             else
-            //if (KodObl.Trim().Length  != 0)
             {
-                List<Sob> _detailing = await db.Sobs.Where(x => x.KodObl == KodObl).OrderBy(x => x.KodObl).ToListAsync();
-                return Ok(_detailing);
+                _listdetailing = await db.Sobs.Where(x => x.KodObl == KodObl).OrderBy(x => x.KodObl).ToListAsync();
+                return Ok(_listdetailing);
             }
-
-           
-
         }
 
         // POST api/<SobController>
