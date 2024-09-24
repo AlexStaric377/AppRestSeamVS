@@ -105,7 +105,7 @@ namespace AppRestSeam.Controllers
                     var _compl = await db.LifeDoctors.ToListAsync();
                     foreach (LifeDoctor str in _compl)
                     {
-                        _detailing = await db.LifeDoctors.FindAsync(Convert.ToInt32(str.Id));
+                        _detailing = await db.LifeDoctors.FirstOrDefaultAsync(x => x.Id == str.Id);
                         if (_detailing != null)
                         {
                             db.LifeDoctors.Remove(_detailing);
@@ -118,7 +118,7 @@ namespace AppRestSeam.Controllers
                 {
                     if (Convert.ToInt32(id) > 0)
                     {
-                        _detailing = await db.LifeDoctors.FindAsync(Convert.ToInt32(id));
+                        _detailing = await db.LifeDoctors.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                         if (_detailing != null)
                         { 
                              db.LifeDoctors.Remove(_detailing);

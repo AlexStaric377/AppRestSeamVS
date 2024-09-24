@@ -73,20 +73,9 @@ namespace AppRestSeam.Controllers
 
             if (stroka == "0")
             {
-                
-                //byte[] utf8Bytes = { 0 }, ArrayBytes ={0};
-                //List<byte> combList = new List<byte>();
                 Encoding code = Encoding.Default;
                 string[] fileLines = System.IO.File.ReadAllLines(OutFile, code);
-                //foreach (string str in fileLines)
-                //{
-                //    utf8Bytes = Encoding.Default.GetBytes(str);
-                //    combList.AddRange(utf8Bytes);
-                //}
-                //var rez = combList.ToArray();
-                //return new JsonResult(Encoding.UTF8.GetString(rez));
                 return new JsonResult(fileLines);
-
             }
             using (StreamWriter writer = new StreamWriter(OutFile, true))
             {

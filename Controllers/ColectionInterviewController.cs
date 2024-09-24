@@ -112,7 +112,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.ColectionInterviews.ToListAsync();
                 foreach (ColectionInterview str in _compl)
                 {
-                    _detailing = await db.ColectionInterviews.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.ColectionInterviews.Remove(_detailing);

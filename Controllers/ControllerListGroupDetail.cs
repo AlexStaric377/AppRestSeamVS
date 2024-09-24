@@ -100,7 +100,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.ListGrDetailings.ToListAsync();
                 foreach (ListGrDetailing str in _compl)
                 {
-                    _grDetailing = await db.ListGrDetailings.FindAsync(Convert.ToInt32(str.Id));
+                    _grDetailing = await db.ListGrDetailings.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_grDetailing != null)
                     {
                         db.ListGrDetailings.Remove(_grDetailing);
@@ -111,7 +111,7 @@ namespace AppRestSeam.Controllers
             }
             else
             { 
-                _grDetailing = await db.ListGrDetailings.FindAsync(Convert.ToInt32(id));
+                _grDetailing = await db.ListGrDetailings.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_grDetailing == null) { return NotFound(); }
                 try
                 {

@@ -107,7 +107,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Complaints.ToListAsync();
                 foreach (Complaint str in _compl)
                 {
-                    _complaint = await db.Complaints.FindAsync(Convert.ToInt32(str.Id));
+                    _complaint = await db.Complaints.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_complaint != null)
                     { 
                          db.Complaints.Remove(_complaint);
@@ -119,7 +119,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _complaint = await db.Complaints.FindAsync(Convert.ToInt32(id));
+                _complaint = await db.Complaints.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_complaint == null) { return NotFound(); }
                 try
                 {

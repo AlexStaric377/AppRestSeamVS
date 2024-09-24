@@ -106,7 +106,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Features.ToListAsync();
                 foreach (Feature str in _compl)
                 {
-                    _feature = await db.Features.FindAsync(Convert.ToInt32(str.Id));
+                    _feature = await db.Features.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_feature != null)
                     {
                         db.Features.Remove(_feature);
@@ -117,7 +117,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _feature = await db.Features.FindAsync(Convert.ToInt32(id));
+                _feature = await db.Features.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_feature == null) { return NotFound(); }
                 try
                 {

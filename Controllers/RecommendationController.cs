@@ -99,7 +99,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Recommendations.ToListAsync();
                 foreach (Recommendation str in _compl)
                 {
-                    _detailing = await db.Recommendations.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.Recommendations.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.Recommendations.Remove(_detailing);
@@ -111,7 +111,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _detailing = await db.Recommendations.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.Recommendations.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

@@ -95,7 +95,7 @@ namespace AppRestSeam.Controllers
                 {
                     foreach (ColectionInterview str in _compl)
                     {
-                        _doctor = await db.ColectionInterviews.FindAsync(Convert.ToInt32(str.Id));
+                        _doctor = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.Id == str.Id);
                         if (_doctor != null)
                         {
                             db.ColectionInterviews.Remove(_doctor);
@@ -108,7 +108,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _doctor = await db.ColectionInterviews.FindAsync(Convert.ToInt32(id));
+                _doctor = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_doctor == null) { return NotFound(); }
                 try
                 {

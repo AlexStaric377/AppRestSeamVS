@@ -106,7 +106,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Icds.ToListAsync();
                 foreach (Icd str in _compl)
                 {
-                    _detailing = await db.Icds.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.Icds.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.Icds.Remove(_detailing);
@@ -117,7 +117,7 @@ namespace AppRestSeam.Controllers
             }
             else
             { 
-                _detailing = await db.Icds.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.Icds.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

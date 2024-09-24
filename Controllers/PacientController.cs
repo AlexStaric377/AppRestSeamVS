@@ -168,7 +168,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Pacients.ToListAsync();
                 foreach (Pacient str in _compl)
                 {
-                    _detailing = await db.Pacients.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.Pacients.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.Pacients.Remove(_detailing);
@@ -192,7 +192,7 @@ namespace AppRestSeam.Controllers
                 }
                 if (Convert.ToInt32(id) > 0)
                 {
-                    _detailing = await db.Pacients.FindAsync(Convert.ToInt32(id));
+                    _detailing = await db.Pacients.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                     if (_detailing == null) { return NotFound(); }
                     try
                     {

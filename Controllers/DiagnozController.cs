@@ -105,7 +105,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Diagnozs.ToListAsync();
                 foreach (Diagnoz str in _compl)
                 {
-                    _diagnoz = await db.Diagnozs.FindAsync(Convert.ToInt32(str.Id));
+                    _diagnoz = await db.Diagnozs.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_diagnoz != null)
                     {
                         db.Diagnozs.Remove(_diagnoz);
@@ -116,7 +116,7 @@ namespace AppRestSeam.Controllers
             }
             else
             { 
-                _diagnoz = await db.Diagnozs.FindAsync(Convert.ToInt32(id));
+                _diagnoz = await db.Diagnozs.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_diagnoz == null) { return NotFound(); }
                 try
                 {

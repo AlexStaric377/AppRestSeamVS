@@ -105,7 +105,7 @@ namespace AppRestSeam.Controllers
                             {
                                 try 
                                 {
-                                     _content = await db.RegistrationAppointments.FindAsync(Convert.ToInt32(str.Id));
+                                     _content = await db.RegistrationAppointments.FirstOrDefaultAsync(x => x.Id == str.Id);
                                     if (_content != null)
                                     {
                                         db.RegistrationAppointments.Remove(_content);

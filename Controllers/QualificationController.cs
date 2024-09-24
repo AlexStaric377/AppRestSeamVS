@@ -104,7 +104,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.Qualifications.ToListAsync();
                 foreach (Qualification str in _compl)
                 {
-                    _detailing = await db.Qualifications.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.Qualifications.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.Qualifications.Remove(_detailing);
@@ -115,7 +115,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _detailing = await db.Qualifications.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.Qualifications.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

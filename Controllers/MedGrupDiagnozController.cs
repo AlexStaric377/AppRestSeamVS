@@ -104,7 +104,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.MedicalGrDiagnozs.ToListAsync();
                 foreach (MedicalGrDiagnoz str in _compl)
                 {
-                    _detailing = await db.MedicalGrDiagnozs.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.MedicalGrDiagnozs.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.MedicalGrDiagnozs.Remove(_detailing);
@@ -115,7 +115,7 @@ namespace AppRestSeam.Controllers
             }
             else
             {
-                _detailing = await db.MedicalGrDiagnozs.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.MedicalGrDiagnozs.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

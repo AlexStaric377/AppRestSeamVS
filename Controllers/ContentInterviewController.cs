@@ -92,7 +92,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.ContentIntervs.ToListAsync();
                 foreach (ContentInterv str in _compl)
                 {
-                    _content = await db.ContentIntervs.FindAsync(Convert.ToInt32(str.Id));
+                    _content = await db.ContentIntervs.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_content != null)
                     {
                         db.ContentIntervs.Remove(_content);

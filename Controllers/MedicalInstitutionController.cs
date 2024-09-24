@@ -112,7 +112,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.MedicalInstitutions.ToListAsync();
                 foreach (MedicalInstitution str in _compl)
                 {
-                    _detailing = await db.MedicalInstitutions.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.MedicalInstitutions.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.MedicalInstitutions.Remove(_detailing);
@@ -123,7 +123,7 @@ namespace AppRestSeam.Controllers
             }
             else
             { 
-                _detailing = await db.MedicalInstitutions.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.MedicalInstitutions.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

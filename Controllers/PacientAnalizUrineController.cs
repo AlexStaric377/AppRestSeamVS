@@ -116,7 +116,7 @@ namespace AppRestSeam.Controllers
                         var _compl = await db.PacientAnalizUrines.ToListAsync();
                         foreach (PacientAnalizUrine str in _compl)
                         {
-                            _detailing = await db.PacientAnalizUrines.FindAsync(Convert.ToInt32(str.Id));
+                            _detailing = await db.PacientAnalizUrines.FirstOrDefaultAsync(x => x.Id == str.Id);
                             if (_detailing != null)
                             {
                                 db.PacientAnalizUrines.Remove(_detailing);

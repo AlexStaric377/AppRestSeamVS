@@ -115,7 +115,7 @@ namespace AppRestSeam.Controllers
                         var _compl = await db.PacientAnalizKrovis.ToListAsync();
                         foreach (PacientAnalizKrovi str in _compl)
                         {
-                            _detailing = await db.PacientAnalizKrovis.FindAsync(Convert.ToInt32(str.Id));
+                            _detailing = await db.PacientAnalizKrovis.FirstOrDefaultAsync(x => x.Id == str.Id);
                             if (_detailing != null)
                             {
                                 db.PacientAnalizKrovis.Remove(_detailing);

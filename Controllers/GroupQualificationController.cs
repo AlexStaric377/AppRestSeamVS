@@ -99,7 +99,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.ListGroupQualifications.ToListAsync();
                 foreach (ListGroupQualification str in _compl)
                 {
-                    _detailing = await db.ListGroupQualifications.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.ListGroupQualifications.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.ListGroupQualifications.Remove(_detailing);
@@ -110,7 +110,7 @@ namespace AppRestSeam.Controllers
             }
             else
             { 
-                _detailing = await db.ListGroupQualifications.FindAsync(Convert.ToInt32(id));
+                _detailing = await db.ListGroupQualifications.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try
                 {

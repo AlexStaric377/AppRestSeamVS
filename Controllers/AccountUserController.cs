@@ -115,7 +115,7 @@ namespace AppRestSeam.Controllers
                 var _compl = await db.AccountUsers.ToListAsync();
                 foreach (AccountUser str in _compl)
                 {
-                    _detailing = await db.AccountUsers.FindAsync(Convert.ToInt32(str.Id));
+                    _detailing = await db.AccountUsers.FirstOrDefaultAsync(x => x.Id == str.Id);
                     if (_detailing != null)
                     {
                         db.AccountUsers.Remove(_detailing);
