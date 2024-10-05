@@ -39,30 +39,58 @@ namespace AppRestSeam.Controllers
         [HttpGet("{KodProtokola}/{KodDoctora}/{KodPacienta}")]
         public async Task<ActionResult<ColectionInterview>> Get(string KodProtokola, string KodDoctora,string KodPacienta)
         {
-            //ColectionInterview _detailing = new ColectionInterview();
+            bool Truewhile = true;
+            DateTime thisDay = DateTime.Now;
+            List<ColectionInterview> _detailing = new List<ColectionInterview>();
+            List<ColectionInterview> _AllColection = new List<ColectionInterview>();
+            if (KodProtokola.Trim() == "0" && KodPacienta.Trim() == "0" && KodDoctora.Trim() == "0") return NotFound();
             if (KodProtokola.Trim() == "0")
             {
-                List<ColectionInterview> _detailing = new List<ColectionInterview>();
-                if (KodDoctora.Trim() == "0")
-                {
-                    if (KodPacienta.Trim() == "0") return NotFound();
+                while (Truewhile == true)
+                { 
+                    var DateToday = thisDay.ToString(); //"гггг-ММ-дд ЧЧ:мм:сс,ффф"
+                    DateToday = DateToday.Substring(0, DateToday.IndexOf(" "));
+                    if (KodPacienta.Trim() != "0")
+                    { 
+                        _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta && x.DateInterview.Contains(DateToday)).ToListAsync();                            
+                    }
+ 
                     else
                     {
-                        _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta).ToListAsync();
+                        _detailing = await db.ColectionInterviews.Where(x => x.KodDoctor == KodDoctora && x.DateInterview.Contains(DateToday)).ToListAsync();
                     }
+                    if (_detailing.Count > 0)
+                    {
+                        while (Truewhile == true)
+                        {
+                            thisDay = thisDay.AddDays(-1);
+                            if(_detailing.Count == 0 && _AllColection.Count > 15) break;
+                            if (_detailing.Count > 0)_AllColection.AddRange(_detailing);
+                            if(_AllColection.Count>15) break;
+                            DateToday = thisDay.ToString();
+                            DateToday = DateToday.Substring(0, DateToday.IndexOf(" "));
+                            if (KodPacienta.Trim() != "0")
+                            {
+                                _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta && x.DateInterview.Contains(DateToday)).ToListAsync();
+                            }
+
+                            else
+                            {
+                                _detailing = await db.ColectionInterviews.Where(x => x.KodDoctor == KodDoctora && x.DateInterview.Contains(DateToday)).ToListAsync();
+                            }
+                        }
+                        break;
+                    }
+                    else thisDay = thisDay.AddDays(-1); 
                 }
-                else 
-                {
-                     _detailing = await db.ColectionInterviews.Where(x => x.KodDoctor == KodDoctora).ToListAsync();                
-                }
-                return Ok(_detailing);
+                return Ok(_AllColection);
             }
             else
             {
-                ColectionInterview _detailing  = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.KodProtokola == KodProtokola);
-                return Ok(_detailing);
+                ColectionInterview _Protokol = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.KodProtokola == KodProtokola);
+                return Ok(_Protokol);
             }
-            
+
 
         }
 

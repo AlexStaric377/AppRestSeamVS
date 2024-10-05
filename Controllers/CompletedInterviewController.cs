@@ -39,8 +39,8 @@ namespace AppRestSeam.Controllers
         [HttpGet("{KodProtokola}/{id}")]
         public async Task<ActionResult<CompletedInterview>> Get(string KodProtokola,int Id)
         {
-            if (KodProtokola.Trim() == "0" && Id !=0) { return NotFound(); }
-            if (KodProtokola.Trim() == "0" && Id == 0)
+            if (KodProtokola.Trim() == "0" && Id ==0) { return NotFound(); }
+            if (KodProtokola.Trim() == "0" && Id != 0)
             {
                 CompletedInterview _content = new CompletedInterview();
 

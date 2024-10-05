@@ -429,7 +429,7 @@ namespace AppRestSeam.Models
         public string NameRajon { get; set; }
         public string Namepunkt { get; set; }
         public int Piple  { get; set; }
-        public int Pind { get; set; }
+        public string Pind { get; set; }
 
     }
 

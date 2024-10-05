@@ -37,12 +37,18 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<SobController>/5
-        [HttpGet("{KodObl}/{Id}/{PoiskObl}")]
-        public async Task<ActionResult<Sob>> Get(string KodObl, string Id, string PoiskObl)
+        [HttpGet("{KodObl}/{Id}/{PoiskObl}/{Pind}")]
+        public async Task<ActionResult<Sob>> Get(string KodObl, string Id, string PoiskObl, string Pind)
         {
             
-            if (KodObl.Trim() == "0" && Id.Trim() == "0" && PoiskObl.Trim() == "0") { return NotFound(); }
+            if (KodObl.Trim() == "0" && Id.Trim() == "0" && PoiskObl.Trim() == "0" && Pind.Trim() == "0") { return NotFound(); }
             List<Sob> _listdetailing = new List<Sob>();
+            if (Pind.Trim() != "0")
+            {
+                
+                _listdetailing = await db.Sobs.Where(x => x.Pind.Contains(Pind)).ToListAsync();
+                return Ok(_listdetailing);
+            }
             if (PoiskObl.Trim() != "0")
             { 
                 _listdetailing = await db.Sobs.Where(x => x.NameObl.Contains(PoiskObl)).ToListAsync();

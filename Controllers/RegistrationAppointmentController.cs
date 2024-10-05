@@ -87,15 +87,9 @@ namespace AppRestSeam.Controllers
         {
             if (KodPacienta.Trim() == "0" && id == "0" && KodDoctora.Trim() == "0") { return NotFound(); }
             RegistrationAppointment _content = new RegistrationAppointment();
-                
-                await db.RegistrationAppointments.FindAsync(Convert.ToInt32(id));
-            if (_content == null) { return NotFound(); }
-            try
-            {
 
                 if (id != "0")
                 {
-
                     if (Convert.ToInt32(id) == -1)
                     {
                         var _compl = await db.RegistrationAppointments.ToListAsync();
@@ -128,6 +122,7 @@ namespace AppRestSeam.Controllers
                         try
                         {
                             db.RegistrationAppointments.Remove(_content);
+                            await db.SaveChangesAsync();
                             _content.Id = 0;
                         }
                         catch (DbUpdateConcurrencyException)
@@ -141,33 +136,28 @@ namespace AppRestSeam.Controllers
                 if (KodPacienta.Trim() != "0")
                 {
                     _content = await db.RegistrationAppointments.FirstOrDefaultAsync(x => x.KodPacient == KodPacienta);
-                    if (_content != null) db.RegistrationAppointments.RemoveRange(db.RegistrationAppointments.Where(x => x.KodPacient == KodPacienta));
+
+                    if (_content != null)
+                    { 
+                        db.RegistrationAppointments.RemoveRange(db.RegistrationAppointments.Where(x => x.KodPacient == KodPacienta));
+                        await db.SaveChangesAsync();
+                    } 
                 }
                 if (KodDoctora.Trim() != "0")
                 {
                     _content = await db.RegistrationAppointments.FirstOrDefaultAsync(x => x.KodDoctor == KodDoctora);
-                    if (_content != null) db.RegistrationAppointments.RemoveRange(db.RegistrationAppointments.Where(x => x.KodDoctor == KodDoctora));
-                }
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (Convert.ToInt32(id) != 0)
-                {
-                    if (db.RegistrationAppointments.Any(x => x.Id == _content.Id)) { return BadRequest(); }
-                }
-                if (KodPacienta.Trim() != "0")
-                {
-                    if (db.RegistrationAppointments.Any(x => x.KodPacient == _content.KodPacient)) { return BadRequest(); }
-
-                }
-                if (KodDoctora.Trim() != "0")
-                {
-                    if (db.RegistrationAppointments.Any(x => x.KodDoctor == _content.KodDoctor)) { return BadRequest(); }
+                    if (_content != null)
+                    { 
+                        db.RegistrationAppointments.RemoveRange(db.RegistrationAppointments.Where(x => x.KodDoctor == KodDoctora));
+                        await db.SaveChangesAsync();
+                    } 
                 }
 
-            }
-            return Ok(_content);
+                return Ok(_content);
         }
+ 
+
+            
+
     }
 }
