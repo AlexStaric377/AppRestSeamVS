@@ -46,6 +46,16 @@ namespace AppRestSeam.Controllers
             if (KodProtokola.Trim() == "0" && KodPacienta.Trim() == "0" && KodDoctora.Trim() == "0") return NotFound();
             if (KodProtokola.Trim() == "0")
             {
+                if (KodPacienta.Trim() != "0") 
+                {
+                    _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta ).ToListAsync();
+                    if (_detailing.Count == 0) return Ok(_detailing);
+                }
+                if (KodDoctora.Trim() != "0")
+                {
+                    _detailing = await db.ColectionInterviews.Where(x => x.KodDoctor == KodDoctora).ToListAsync();
+                    if (_detailing.Count == 0) return Ok(_detailing);
+                }
                 while (Truewhile == true)
                 { 
                     var DateToday = thisDay.ToString(); //"гггг-ММ-дд ЧЧ:мм:сс,ффф"

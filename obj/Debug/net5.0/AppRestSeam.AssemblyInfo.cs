@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppRestSeam")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.37")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.39")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppRestSeam")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppRestSeam")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.37")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.39")]
 
 // Создано классом WriteCodeFragment MSBuild.
 
