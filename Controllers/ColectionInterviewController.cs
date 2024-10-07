@@ -48,8 +48,8 @@ namespace AppRestSeam.Controllers
             {
                 if (KodPacienta.Trim() != "0") 
                 {
-                    _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta ).ToListAsync();
-                    if (_detailing.Count == 0) return Ok(_detailing);
+                    ColectionInterview KodPacientanull = await db.ColectionInterviews.FirstOrDefaultAsync(x => x.KodPacient == KodPacienta );
+                    if (KodPacientanull == null) return Ok(_detailing);
                 }
                 if (KodDoctora.Trim() != "0")
                 {
@@ -83,11 +83,11 @@ namespace AppRestSeam.Controllers
                             {
                                 _detailing = await db.ColectionInterviews.Where(x => x.KodPacient == KodPacienta && x.DateInterview.Contains(DateToday)).ToListAsync();
                             }
-
                             else
                             {
                                 _detailing = await db.ColectionInterviews.Where(x => x.KodDoctor == KodDoctora && x.DateInterview.Contains(DateToday)).ToListAsync();
                             }
+                            if (_detailing.Count == 0) Truewhile = false;
                         }
                         break;
                     }
