@@ -39,21 +39,19 @@ namespace AppRestSeam.Controllers
         [HttpGet("{KeyIcd}/{NameGrIcd}")]
         public async Task<ActionResult<Icd>> Get(string KeyIcd, string NameGrIcd)
         {
-
+            List<Icd> _listdetailing = new List<Icd>();
             if (KeyIcd.Trim().Length == 0 && NameGrIcd.Trim().Length == 0) { return NotFound(); }
 
             Icd _detailing = new Icd();
             if (KeyIcd != "0")
             {
-                _detailing = await db.Icds.FirstOrDefaultAsync(x => x.KeyIcd.Contains(KeyIcd) == true);
+                _listdetailing = await db.Icds.Where(x => x.KeyIcd.Contains(KeyIcd) == true).ToListAsync();
             }
             if (NameGrIcd != "0")
             {
-                List<Icd> _listdetailing = new List<Icd>();
-                _listdetailing = await db.Icds.Where(x => x.Name.Contains(NameGrIcd) == true ).ToListAsync();
-                return Ok(_listdetailing); 
+                 _listdetailing = await db.Icds.Where(x => x.Name.Contains(NameGrIcd) == true ).ToListAsync();
             }
-            return Ok(_detailing);
+            return Ok(_listdetailing);
 
 
         }
