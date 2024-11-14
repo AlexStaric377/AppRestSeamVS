@@ -36,14 +36,21 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<ApiControllerVisitingDays>/5
-        [HttpGet("{KodDoctor}")]
-        public async Task<ActionResult<VisitingDays>> Get(string KodDoctor)
+        [HttpGet("{KodDoctor}/{DataVisita}")]
+        public async Task<ActionResult<VisitingDays>> Get(string KodDoctor ="", string DataVisita ="")
         {
-
-            if (KodDoctor.Trim().Length == 0) { return NotFound(); }
-            //VisitingDays _diagnoz = await db.VisitingDayss.FirstOrDefaultAsync(x => x.KodDoctor == KodDoctor);
-            var _diagnoz = await db.VisitingDayss.Where(x => x.KodDoctor == KodDoctor).OrderBy(x => x.DateVizita).ToListAsync();
-            return Ok(_diagnoz);
+            List<VisitingDays> _Days = new List<VisitingDays>();
+            if (KodDoctor != "0" && DataVisita == "0")
+            {
+                _Days = await db.VisitingDayss.Where(x => x.KodDoctor == KodDoctor).ToListAsync(); 
+                    
+            }
+            if (KodDoctor != "0" && DataVisita != "0")
+            {
+                _Days = await db.VisitingDayss.Where(x => x.KodDoctor == KodDoctor && x.DateVizita.Contains(DataVisita) == true).ToListAsync();
+                
+            }
+            return Ok(_Days);
 
         }
 
@@ -86,8 +93,8 @@ namespace AppRestSeam.Controllers
         }
 
         // DELETE api/<ApiControllerVisitingDays>/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<VisitingDays>> Delete(string id)
+        [HttpDelete("{id}/{KodDoctor}/{DataVisita}")]
+        public async Task<ActionResult<VisitingDays>> Delete(string id, string KodDoctor="", string DataVisita = "")
         {
             VisitingDays _detailing = new VisitingDays();
             if (Convert.ToInt32(id) == -1)
@@ -106,6 +113,23 @@ namespace AppRestSeam.Controllers
             }
             else
             {
+                if (KodDoctor != "" && DataVisita == "")
+                {
+                    
+                    List<VisitingDays> _listdoctor = await db.VisitingDayss.Where(x => x.KodDoctor == KodDoctor).ToListAsync();
+                    db.VisitingDayss.RemoveRange(_listdoctor);
+                    await db.SaveChangesAsync();
+                    return Ok(_listdoctor);
+                }
+
+                if (KodDoctor != "" && DataVisita != "")
+                {
+                    List<VisitingDays> _listdoctor = await db.VisitingDayss.Where(x => x.KodDoctor == KodDoctor && x.DateVizita.Contains(DataVisita) == true).ToListAsync();
+                    db.VisitingDayss.RemoveRange(_listdoctor);
+                    await db.SaveChangesAsync();
+                    return Ok(_listdoctor);
+                }
+
                 _detailing = await db.VisitingDayss.FirstOrDefaultAsync(x => x.Id == Convert.ToInt32(id));
                 if (_detailing == null) { return NotFound(); }
                 try

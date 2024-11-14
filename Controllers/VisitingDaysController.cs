@@ -33,14 +33,14 @@ namespace AppRestSeam.Controllers
         [HttpGet]
         public async Task<ActionResult<VisitingDays>> Get()
         {
-            List<VisitingDays> _detailing = await db.VisitingDayss.OrderBy(x => x.KodDoctor).OrderBy(x => x.DateVizita).ToListAsync();
+            List<VisitingDays> _detailing = await db.VisitingDayss.OrderBy(x => x.KodDoctor).ToListAsync(); //.OrderBy(x => x.DateVizita)
             return Ok(_detailing);
 
         }
 
         // GET api/<VisitingDaysController>/5
         [HttpGet("{KodDoctor}/{DateVizita}")]
-        public async Task<ActionResult<VisitingDays>> Get(string KodDoctor, string DateVizita)
+        public async Task<ActionResult<VisitingDays>> Get(string KodDoctor, string DateVizita = "0")
         {
             List<VisitingDays> _detailing = new List<VisitingDays>();
             if (KodDoctor.Trim() == "0") { return NotFound(); }

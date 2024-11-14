@@ -93,4 +93,5 @@ D:\AppRestSeam\bin\Debug\net5.0\ref\AppRestSeam.dll
 D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.pdb
 D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.dll
 D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.pdb
+D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.csproj.AssemblyReference.cache
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.genruntimeconfig.cache
