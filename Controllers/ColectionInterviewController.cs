@@ -39,6 +39,7 @@ namespace AppRestSeam.Controllers
         [HttpGet("{KodProtokola}/{KodDoctora}/{KodPacienta}")]
         public async Task<ActionResult<ColectionInterview>> Get(string KodProtokola, string KodDoctora,string KodPacienta)
         {
+            int minusday = 1;
             bool Truewhile = true;
             DateTime thisDay = DateTime.Now;
             List<ColectionInterview> _detailing = new List<ColectionInterview>();
@@ -74,9 +75,9 @@ namespace AppRestSeam.Controllers
                         while (Truewhile == true)
                         {
                             thisDay = thisDay.AddDays(-1);
-                            if(_detailing.Count == 0 && _AllColection.Count > 15) break;
-                            if (_detailing.Count > 0)_AllColection.AddRange(_detailing);
-                            if(_AllColection.Count>15) break;
+                            if (_detailing.Count == 0 && _AllColection.Count > 15) break;
+                            if (_detailing.Count > 0) _AllColection.AddRange(_detailing);
+                            if (_AllColection.Count > 15) break;
                             DateToday = thisDay.ToString();
                             DateToday = DateToday.Substring(0, DateToday.IndexOf(" "));
                             if (KodPacienta.Trim() != "0")
@@ -91,7 +92,12 @@ namespace AppRestSeam.Controllers
                         }
                         break;
                     }
-                    else thisDay = thisDay.AddDays(-1); 
+                    else
+                    { 
+                        thisDay = thisDay.AddDays(-1);
+                        minusday++;
+                        if(minusday>=30) Truewhile = false;
+                    } 
                 }
                 return Ok(_AllColection);
             }
