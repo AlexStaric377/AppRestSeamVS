@@ -441,7 +441,8 @@ namespace AppRestSeam.Models
         public string IdStatus { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        
+        public string AccountCreatDate { get; set; }
+        public string Subscription { get; set; }
 
     }
 
@@ -455,6 +456,28 @@ namespace AppRestSeam.Models
         public string NameStatus { get; set; }
         public string KodDostupa { get; set; }
 
+    }
+
+    // таблица текущих оплат по подписке в соответствии с прайсом на указанное количество дней
+    public class Payment
+    {
+        public int Id { get; set; }
+        public string KeyClient { get; set; } // код пациента или доктора
+        public string DatePayment { get; set; }
+        [Column(TypeName = "decimal(14,2)")]
+        public decimal Suma { get; set; }
+        public string KeyPrice { get; set; }
+        public string Telefon { get; set; }
+    }
+
+    // справочник тарифов на предоставляемые услуги по диагностике в личных кабинетах
+    public class Price
+    {
+        public int Id { get; set; }
+        public string KeyPrice { get; set; }
+        public int QuantityDays { get; set; }
+        [Column(TypeName = "decimal(14,2)")]
+        public decimal PriceQuantity { get; set; }
     }
 
 }

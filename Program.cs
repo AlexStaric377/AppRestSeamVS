@@ -28,7 +28,7 @@ namespace AppRestSeam
 {
     public class Program
     {
-        public static string UnloadString, connection,Upload, InfoSborka;
+        public static string UnloadString, connection,Upload, InfoSborka, Subscription;
 
         public static void Main(string[] args)
         {
@@ -60,6 +60,7 @@ namespace AppRestSeam
             UnloadString = Directory.GetCurrentDirectory()+@"\"+ config.GetSection("ConnectionStrings:UnloadString").Value + @"\";
             connection = config.GetSection("ConnectionStrings:DefaultConnection").Value;
             Upload = config.GetSection("ConnectionStrings:UploadBd").Value;
+            Subscription = config.GetSection("ConnectionStrings:Subscription").Value;
             var host = new WebHostBuilder()
                 .UseKestrel(options => options.AddServerHeader = false)
                 .UseConfiguration(config)

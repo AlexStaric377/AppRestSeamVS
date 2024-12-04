@@ -49,6 +49,8 @@ namespace AppRestSeam.Models
         public DbSet<PacientAnalizKrovi> PacientAnalizKrovis { get; set; }
 
         public DbSet<PacientAnalizUrine> PacientAnalizUrines { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Price> Prices { get; set; }
 
         public DbContextSeam(DbContextOptions<DbContextSeam> options)
             : base(options)
