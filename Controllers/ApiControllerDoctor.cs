@@ -74,7 +74,6 @@ namespace AppRestSeam.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (db.Doctors.Any(x => x.Id != _doctor.Id)) { return NotFound(); }
-
             }
             return Ok(_doctor);
         }
@@ -93,7 +92,6 @@ namespace AppRestSeam.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (db.Doctors.Any(x => x.Id != _doctor.Id)) { return NotFound(); }
-
             }
             return Ok(_doctor);
 
@@ -144,7 +142,6 @@ namespace AppRestSeam.Controllers
                 }
 
             }
-
             return Ok(_doctor);
         }
     }

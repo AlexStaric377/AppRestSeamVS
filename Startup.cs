@@ -163,7 +163,12 @@ namespace AppRestSeam
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller = LikarGrupDiagnozController}/{action}/{id?}/{*catchall}");
-
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller = ControllerPayment}/{action}/{id?}/{*catchall}");
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller = ControllerPrice}/{action}/{id?}/{*catchall}");
             });
         }
     }
