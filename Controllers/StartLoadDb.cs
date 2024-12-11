@@ -854,7 +854,10 @@ namespace AppRestSeam.Controllers
             }
             db.SaveChanges();
 
-
+            if (!db.Prices.Any())
+            {
+                db.Prices.Add(new Price { KeyPrice = "1", QuantityDays = 30, PriceQuantity = 200m, NamePrice = "Послуги з діагностики нездужання  протягом місяця" });
+            }
         }
                                                              
     }

@@ -31,7 +31,7 @@ namespace AppRestSeam.Controllers
         [HttpGet]
         public async Task<ActionResult<Price>> Get()
         {
-            List<Price> _price = await db.Prices.OrderBy(x => x.KeyPrice).OrderBy(x => x.KeyPrice).ToListAsync();
+            List<Price> _price = await db.Prices.OrderBy(x => x.KeyPrice).ToListAsync();
             return Ok(_price);
         }
 
@@ -45,7 +45,7 @@ namespace AppRestSeam.Controllers
 
             if (KeyPrice != "0")
             {
-                _price = await db.Prices.Where(x => x.KeyPrice == KeyPrice).OrderBy(x => x.KeyPrice).ToListAsync();
+                _price = await db.Prices.Where(x => x.KeyPrice == KeyPrice).ToListAsync();
             }
             return Ok(_price);
 

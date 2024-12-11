@@ -478,6 +478,7 @@ namespace AppRestSeam.Models
         public int QuantityDays { get; set; }
         [Column(TypeName = "decimal(14,2)")]
         public decimal PriceQuantity { get; set; }
+        public string NamePrice { get; set; }
     }
 
 }
