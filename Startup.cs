@@ -169,6 +169,9 @@ namespace AppRestSeam
                 endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller = ControllerPrice}/{action}/{id?}/{*catchall}");
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller = ControllerStatusMedZaklad}/{action}/{id?}/{*catchall}");
             });
         }
     }

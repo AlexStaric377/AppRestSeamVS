@@ -99,15 +99,7 @@ namespace AppRestSeam.Controllers
                 db.Features.Add(new Feature { Name = "біль у попереку переміщується в пах", KeyFeature = "G.000.006", KeyComplaint = "G.000" ,IdUser="Admin"});
                 db.Features.Add(new Feature { Name = "біль тільки нижче талії", KeyFeature = "G.000.007", KeyComplaint = "G.000" ,IdUser="Admin"});
                 db.Features.Add(new Feature { Name = "біль у попереку з однієї із сторін над самою талією", KeyFeature = "G.000.008", KeyComplaint = "G.000" ,IdUser="Admin"});
-
-
-
-
-
-
-
-
-
+                db.SaveChanges();
 
             }
 
@@ -375,7 +367,7 @@ namespace AppRestSeam.Controllers
                 db.Detailings.Add(new Detailing { NameDetailing = "Деталізація при блювотині", KodDetailing = "G.000.008.004", KeyGrDetailing = "YJJ.000", KeyFeature = "G.000.008" ,IdUser="Admin"});
                 db.Detailings.Add(new Detailing { NameDetailing = "Деталізація при проносі або запорі", KodDetailing = "G.000.008.005", KeyGrDetailing = "YKK.000", KeyFeature = "G.000.008" ,IdUser="Admin"});
                 db.Detailings.Add(new Detailing { NameDetailing = "Деталізація за температурою", KodDetailing = "G.000.008.006", KeyGrDetailing = "YCC.000", KeyFeature = "G.000.008" ,IdUser="Admin"});
-
+                db.SaveChanges();
             }
 
             // Группы детализации особености (характера) жалобы 
@@ -498,7 +490,7 @@ namespace AppRestSeam.Controllers
                 db.GrDetailings.Add(new GrDetailing { NameGrDetailing = "приступи проносу за останні неділі", KodDetailing = "YKK.000.002", KeyGrDetailing = "YKK.000" ,IdUser="Admin"}); //7
                 db.GrDetailings.Add(new GrDetailing { NameGrDetailing = "нудота під час проносу", KodDetailing = "YKK.000.003", KeyGrDetailing = "YKK.000" ,IdUser="Admin"}); //8           
                 db.GrDetailings.Add(new GrDetailing { NameGrDetailing = "періодичні запори", KodDetailing = "YKK.000.004", KeyGrDetailing = "YKK.000" ,IdUser="Admin"}); //7
-
+                db.SaveChanges();
             }
 
             // Справочник груп детализации
@@ -515,12 +507,13 @@ namespace AppRestSeam.Controllers
                 db.ListGrDetailings.Add(new ListGrDetailing { KeyGrDetailing = "YII.000", NameGrup = "Деталізація при сечовипусканні" ,IdUser="Admin"});
                 db.ListGrDetailings.Add(new ListGrDetailing { KeyGrDetailing = "YJJ.000", NameGrup = "Деталізація при блювотині" ,IdUser="Admin"});
                 db.ListGrDetailings.Add(new ListGrDetailing { KeyGrDetailing = "YKK.000", NameGrup = "Деталізація при проносі або запорі" ,IdUser="Admin"});
+                db.SaveChanges();
             }
             // Справочник груп уточнений (классификации) детализации
             if (!db.ListGroupQualifications.Any())
             {
                 db.ListGroupQualifications.Add(new ListGroupQualification { KodGroupQualification = "YAAA.000", NameGroupQualification = "Кваліфікація погоди" ,IdUser="Admin"});
-
+                db.SaveChanges();
             }
 
 
@@ -533,6 +526,7 @@ namespace AppRestSeam.Controllers
                 db.Qualifications.Add(new Qualification { KodGroupQualification = "YAAA.000", KodQualification = "YAAA.000.003", NameQualification = "в мокрий сніг" ,IdUser="Admin"});
                 db.Qualifications.Add(new Qualification { KodGroupQualification = "YAAA.000", KodQualification = "YAAA.000.004", NameQualification = "при сильному вітру" ,IdUser="Admin"});
                 db.Qualifications.Add(new Qualification { KodGroupQualification = "YAAA.000", KodQualification = "YAAA.000.005", NameQualification = "в дощ з поривчастим вітром" ,IdUser="Admin"});
+                db.SaveChanges();
             } 
 
             // Справочник диагнозов
@@ -547,7 +541,7 @@ namespace AppRestSeam.Controllers
                 db.Diagnozs.Add(new Diagnoz { KodDiagnoza = "DIA.000000006", KeyIcd = "N00-N99.N40-N54.N41.N41.00", NameDiagnoza = "Попередній діагноз- гострий простатит", IcdGrDiagnoz = "" ,IdUser="Admin"});
                 db.Diagnozs.Add(new Diagnoz { KodDiagnoza = "DIA.000000007", KeyIcd = "K00-K99.K35-K38.K35.K35.00", NameDiagnoza = "Попередній діагноз- гострий апендецит або прободна виразка дванадцятипалої кішки", IcdGrDiagnoz = "" ,IdUser="Admin"});
                 db.Diagnozs.Add(new Diagnoz { KodDiagnoza = "DIA.000000008", KeyIcd = "K00-K99.K50-K52.K51.K51.00", NameDiagnoza = "Попередній діагноз- спастичний коліт", IcdGrDiagnoz = ""  ,IdUser="Admin"});
-
+                db.SaveChanges();
             }
 
             // Справочник рекомендаций для пациентов
@@ -562,6 +556,7 @@ namespace AppRestSeam.Controllers
                 db.Recommendations.Add(new Recommendation { KodRecommendation = "REC.000000006", ContentRecommendation = "Рекомендується звернутися до лікаря уролога" });
                 db.Recommendations.Add(new Recommendation { KodRecommendation = "REC.000000007", ContentRecommendation = "Рекомендується негайно визвати швидку допомогу. Нічого не їсти і не пити." });
                 db.Recommendations.Add(new Recommendation { KodRecommendation = "REC.000000008", ContentRecommendation = "Рекомендується негайно звернутися до гастроентеролога" });
+                db.SaveChanges();
             }
 
 
@@ -577,7 +572,7 @@ namespace AppRestSeam.Controllers
                 db.DependencyDiagnozs.Add(new DependencyDiagnoz { KodDiagnoz = "DIA.000000006", KodRecommend = "REC.000000006", KodProtokola = "PRT.000000006" });
                 db.DependencyDiagnozs.Add(new DependencyDiagnoz { KodDiagnoz = "DIA.000000007", KodRecommend = "REC.000000007", KodProtokola = "PRT.000000007" });
                 db.DependencyDiagnozs.Add(new DependencyDiagnoz { KodDiagnoz = "DIA.000000008", KodRecommend = "REC.000000008", KodProtokola = "PRT.000000008" });
-
+                db.SaveChanges();
             }
 
             // Справочник интервью
@@ -598,7 +593,7 @@ namespace AppRestSeam.Controllers
                 db.Icds.Add(new Icd { KeyIcd = "K00-K99.K35-K38.K35.K35.00", Name = "Гострий апендецит або прободна виразка дванадцятипалої кішки" });
                 db.Icds.Add(new Icd { KeyIcd = "K00-K99.K20-K31.K26.K26.00", Name = "Виразка дванадцятипалої кішки" });
                 db.Icds.Add(new Icd { KeyIcd = "K00-K99.K50-K52.K51.K51.00", Name = "Виразковий коліт" });
-
+                db.SaveChanges();
             }
 
             // Справочник протоколов интервью
@@ -645,6 +640,7 @@ namespace AppRestSeam.Controllers
                     " та ободової кишок, що у тяжчих випадках призводить до утворення виразок. ",
                     UriInterview = "https://empendium.com/ua/chapter/B27.YII.4.16."
                 ,IdUser="Admin"});
+                db.SaveChanges();
             }
 
 
@@ -721,7 +717,7 @@ namespace AppRestSeam.Controllers
                 db.ContentIntervs.Add(new ContentInterv { KodProtokola = "PRT.000000008", Numberstr = 5, KodDetailing = "YGG.000.001", DetailsInterview = "   подібні напади відбувалися на протязі декількох днів за останню неділю" ,IdUser="Admin"});
                 db.ContentIntervs.Add(new ContentInterv { KodProtokola = "PRT.000000008", Numberstr = 6, KodDetailing = "YKK.000.001", DetailsInterview = "   епізодичні проноси" ,IdUser="Admin"});
                 db.ContentIntervs.Add(new ContentInterv { KodProtokola = "PRT.000000008", Numberstr = 7, KodDetailing = "YKK.000.004", DetailsInterview = "   періодичні запори" ,IdUser="Admin"});
-
+                db.SaveChanges();
 
             }
             if (!db.MedicalInstitutions.Any())
@@ -735,7 +731,8 @@ namespace AppRestSeam.Controllers
                     Adres = "03150,Україна м.Київ, Ежи Гедройца,2, офіс 262",
                     Email = "info@forpost",
                     KodObl = "2703150"
-                });            
+                });
+                db.SaveChanges();
             }
 
             if (!db.AccountUsers.Any())
@@ -743,12 +740,12 @@ namespace AppRestSeam.Controllers
                 db.AccountUsers.Add(new AccountUser { IdUser = "CNT.0000000001", IdStatus = "1", Login = "Admin", Password = "7" });
                 db.AccountUsers.Add(new AccountUser { IdUser = "PCN.0000000001", IdStatus = "2", Login = "+380675540132", Password = "2" });
                 db.AccountUsers.Add(new AccountUser { IdUser = "DTR.0000000001", IdStatus = "3", Login = "+380662904827", Password = "3" });
-            
+                db.SaveChanges();
             }
             if (!db.AccountUsers.Any())
             { 
                 db.Pacients.Add(new Pacient { KodPacient = "PCN.0000000001", Age = 78, Weight = 89, Growth = 170, Gender = "чол", Tel = "+380675540132", Name = "Микола", Surname = "Павлюк", Pind = "01234", Profession = "шофер" });
-            
+                db.SaveChanges();
             }
             if (!db.Doctors.Any())
             { 
@@ -760,7 +757,8 @@ namespace AppRestSeam.Controllers
                     Surname = "Козак",
                     Edrpou = "31256789",
                     Specialnoct = "фізіотерапевт"
-                });           
+                });
+                db.SaveChanges();
             }
             // Довідник розкладу прийомів лікаря 
             if (!db.VisitingDayss.Any())
@@ -783,7 +781,8 @@ namespace AppRestSeam.Controllers
                 db.VisitingDayss.Add(new VisitingDays { KodDoctor = "DTR.0000000001", DaysOfTheWeek = "Четверг", DateVizita = "13.07.2023", TimeVizita = "14:00", OnOff = "Так" });
                 db.VisitingDayss.Add(new VisitingDays { KodDoctor = "DTR.0000000001", DaysOfTheWeek = "Четверг", DateVizita = "13.07.2023", TimeVizita = "15:00", OnOff = "Так" });
                 db.VisitingDayss.Add(new VisitingDays { KodDoctor = "DTR.0000000001", DaysOfTheWeek = "Четверг", DateVizita = "13.07.2023", TimeVizita = "16:00", OnOff = "Так" });
-                db.VisitingDayss.Add(new VisitingDays { KodDoctor = "DTR.0000000001", DaysOfTheWeek = "Четверг", DateVizita = "13.07.2023", TimeVizita = "17:00", OnOff = "Так" });            
+                db.VisitingDayss.Add(new VisitingDays { KodDoctor = "DTR.0000000001", DaysOfTheWeek = "Четверг", DateVizita = "13.07.2023", TimeVizita = "17:00", OnOff = "Так" });
+                db.SaveChanges();
             }
 
 
@@ -812,7 +811,7 @@ namespace AppRestSeam.Controllers
                     Lym = "28",
                     Mon = "7"
                 });
-            
+                db.SaveChanges();
             }
 
             // показники аналізу мочи пацієнта
@@ -834,13 +833,14 @@ namespace AppRestSeam.Controllers
                     Leu = "1,5 в п/з",
                     Nit = "нема"
 
-                });           
+                });
+                db.SaveChanges();
             }
 
             if (!db.PacientAnalizKrovis.Any())
             { 
                 db.PacientMapAnalizs.Add(new PacientMapAnaliz { KodPacient= "PCN.0000000001", DateAnaliza = "10.07.2023", Pulse ="67", Pressure ="120/80", Temperature ="36.7", ResultAnaliza ="Стан здоров'я задовільний"});
-            
+                db.SaveChanges();
             }
 
             // Справочник уточнений (классификации) детализации
@@ -852,12 +852,25 @@ namespace AppRestSeam.Controllers
                 db.SaveChanges();
 
             }
-            db.SaveChanges();
+            
 
             if (!db.Prices.Any())
             {
                 db.Prices.Add(new Price { KeyPrice = "1", QuantityDays = 30, PriceQuantity = 200m, NamePrice = "Послуги з діагностики нездужання  протягом місяця" });
+                db.SaveChanges();
             }
+
+
+            if (!db.StatusMedZaklads.Any())
+            {
+                db.StatusMedZaklads.Add(new StatusMedZaklad { IdStatus = "1", NameStatus = "Лікарняний заклад", TypeStatus="1"});
+                db.StatusMedZaklads.Add(new StatusMedZaklad { IdStatus = "2", NameStatus = "Амбулаторно-поліклінічний заклад", TypeStatus = "1" });
+                db.StatusMedZaklads.Add(new StatusMedZaklad { IdStatus = "3", NameStatus = "Заклад переливання крові, швидкої та екстреної медичної допомоги", TypeStatus = "1" });
+                db.StatusMedZaklads.Add(new StatusMedZaklad { IdStatus = "4", NameStatus = "Санаторно-курортний заклад", TypeStatus = "1" });
+                db.StatusMedZaklads.Add(new StatusMedZaklad { IdStatus = "5", NameStatus = "Установа з надання спеціалізованої медичної допомоги", TypeStatus = "1" });
+                db.SaveChanges();
+            }
+
         }
                                                              
     }

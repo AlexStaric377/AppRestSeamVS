@@ -400,6 +400,7 @@ namespace AppRestSeam.Models
         public string Email { get; set; }
         public string UriwebZaklad { get; set; }
         public string KodObl { get; set; }
+        public string IdStatus { get; set; }
 
     }
     // справочник груп диагнозов которые обслуживает мед учреждение
@@ -479,6 +480,17 @@ namespace AppRestSeam.Models
         [Column(TypeName = "decimal(14,2)")]
         public decimal PriceQuantity { get; set; }
         public string NamePrice { get; set; }
+    }
+
+    // справочник статуса пользователей стстемы
+    public class StatusMedZaklad
+    {
+
+        public int Id { get; set; }
+        public string IdStatus { get; set; }
+        public string NameStatus { get; set; }
+        public string TypeStatus { get; set; }
+
     }
 
 }
