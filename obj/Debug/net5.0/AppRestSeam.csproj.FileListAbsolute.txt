@@ -2,6 +2,14 @@ D:\AppRestSeam\bin\Debug\net5.0\!appsettings.json
 D:\AppRestSeam\bin\Debug\net5.0\appsettings.Development.json
 D:\AppRestSeam\bin\Debug\net5.0\appsettings.json
 D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.exe
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.deps.json
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.runtimeconfig.json
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.runtimeconfig.dev.json
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.dll
+D:\AppRestSeam\bin\Debug\net5.0\ref\AppRestSeam.dll
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.pdb
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.dll
+D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.pdb
 D:\AppRestSeam\bin\Debug\net5.0\Humanizer.dll
 D:\AppRestSeam\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\AppRestSeam\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
@@ -38,6 +46,7 @@ D:\AppRestSeam\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient
 D:\AppRestSeam\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\AppRestSeam\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\AppRestSeam\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.csproj.AssemblyReference.cache
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.GeneratedMSBuildEditorConfig.editorconfig
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.AssemblyInfoInputs.cache
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.AssemblyInfo.cs
@@ -65,13 +74,4 @@ D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.csproj.CopyComplete
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.dll
 D:\AppRestSeam\obj\Debug\net5.0\ref\AppRestSeam.dll
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.pdb
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.deps.json
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.runtimeconfig.json
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.runtimeconfig.dev.json
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.dll
-D:\AppRestSeam\bin\Debug\net5.0\ref\AppRestSeam.dll
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.pdb
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.dll
-D:\AppRestSeam\bin\Debug\net5.0\AppRestSeam.Views.pdb
-D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.csproj.AssemblyReference.cache
 D:\AppRestSeam\obj\Debug\net5.0\AppRestSeam.genruntimeconfig.cache
