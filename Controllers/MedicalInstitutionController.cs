@@ -37,17 +37,13 @@ namespace AppRestSeam.Controllers
 
         // GET api/<MedicalInstitutionController>/5
         [HttpGet("{Edrpou}/{PostIndex}/{PoiskNameMedZakl}/{Idstatus}")]
-        public async Task<ActionResult<MedicalInstitution>> Get(string Edrpou, string PostIndex, string PoiskNameMedZakl, string Idstatus="")
+        public async Task<ActionResult<MedicalInstitution>> Get(string Edrpou, string PostIndex, string PoiskNameMedZakl, string Idstatus)
         {
 
-            if (Edrpou.Trim() == "0" && PostIndex.Trim() == "0" && PoiskNameMedZakl.Trim() == "0" && Idstatus == "") { return NotFound(); }
+            if (Edrpou.Trim() == "0" && PostIndex.Trim() == "0" && PoiskNameMedZakl.Trim() == "0" && Idstatus == "0") { return NotFound(); }
 
             MedicalInstitution _detailing = new MedicalInstitution();
-            if (Idstatus != "0")
-            {
-                List<MedicalInstitution> _listMedicalInstitution = await db.MedicalInstitutions.Where(x => x.IdStatus == Idstatus).ToListAsync();
-                return Ok(_listMedicalInstitution);
-            }
+ 
             if (PoiskNameMedZakl.Trim() != "0")
             {
                 List<MedicalInstitution> _listMedicalInstitution = await db.MedicalInstitutions.Where(x => x.Name.Contains(PoiskNameMedZakl) == true).ToListAsync();
@@ -65,6 +61,11 @@ namespace AppRestSeam.Controllers
                     List<MedicalInstitution> _detailinglist = await db.MedicalInstitutions.Where(x => x.PostIndex.Substring(0,2) == PostIndex.Substring(0, 2)).OrderBy(x => x.Edrpou).ToListAsync();
                     return Ok(_detailinglist);
                 }
+            }
+            if (Idstatus != "0")
+            {
+                List<MedicalInstitution> _listMedicalInstitution = await db.MedicalInstitutions.Where(x => x.IdStatus == Idstatus).ToListAsync();
+                return Ok(_listMedicalInstitution);
             }
             return Ok(_detailing);
         }
