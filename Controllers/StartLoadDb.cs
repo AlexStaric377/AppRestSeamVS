@@ -613,7 +613,7 @@ namespace AppRestSeam.Controllers
                     OpistInterview = "Алергічний риніт — інтермітуюче або постійне запалення слизової оболонки носа і його пазух, викликане алергеном."+
                     " Алергічний риніт є дуже поширеним захворюванням.  Алергічний риніт поділяють на сезонний і цілорічний",
                     UriInterview = "https://empendium.com/ua/chapter/B27.YII.17.3."
-                ,IdUser="Admin"});
+                    ,IdUser="Admin", GrDetail = "A.000;YAA.000;YEE.000;YBB.000;YCC.000"  });
                 db.Interviews.Add(new Interview
                 {
                     KodProtokola = "PRT.000000006",
@@ -622,7 +622,7 @@ namespace AppRestSeam.Controllers
                     OpistInterview = "Признаки простатита у мужчин :Частое мочеиспускание; Болезненное мочеиспускание;"+
                     " Слабый напор мочи и рези; Болезненная дефекация;Нарушение эрекции; Жжение в уретре; Ускоренное семяизвержение или длительная эрекция; ",
                     UriInterview = "https://www.dobrobut.com/med/c-simptomy-prostatita-cto-nuzno-znat-kazdomu-muzcine"
-                ,IdUser="Admin"}); 
+                    ,IdUser="Admin", GrDetail = "A.000;YAA.000;YEE.000;YBB.000;YCC.000" }); 
                 db.Interviews.Add(new Interview
                 {
                     KodProtokola = "PRT.000000007",
@@ -630,7 +630,7 @@ namespace AppRestSeam.Controllers
                     NametInterview = " Гострий апендецит або прободна виразка дванадцятипалої кішки" ,
                     OpistInterview = "Острый аппендицит — это острый воспалительно-некротический процесс придатка слепой кишки, который создает угрозу здоровью и жизни пациента.",
                     UriInterview = "https://empendium.com/ua/chapter/B27.YII.4.25.3."
-                ,IdUser="Admin"});
+                    ,IdUser="Admin", GrDetail = "A.000;YAA.000;YEE.000;YBB.000;YCC.000" });
                 db.Interviews.Add(new Interview
                 {
                     KodProtokola = "PRT.000000008",
@@ -639,7 +639,7 @@ namespace AppRestSeam.Controllers
                     OpistInterview = "Виразковий коліт (ВК) є дифузним неспецифічним запаленням слизової оболонки прямої кишки або прямої"+
                     " та ободової кишок, що у тяжчих випадках призводить до утворення виразок. ",
                     UriInterview = "https://empendium.com/ua/chapter/B27.YII.4.16."
-                ,IdUser="Admin"});
+                    ,IdUser="Admin", GrDetail = "A.000;YAA.000;YEE.000;YBB.000;YCC.000"  });
                 db.SaveChanges();
             }
 

@@ -142,6 +142,7 @@ namespace AppRestSeam.Models
         public string OpistInterview { get; set; }
         public string UriInterview { get; set; }
         public string IdUser { get; set; } // код пациента или доктора
+        public string GrDetail { get; set; }
 
     }
     // Контент  создаваемого или просматриваемого  интревью из справочника
@@ -409,6 +410,7 @@ namespace AppRestSeam.Models
         public int Id { get; set; }
         public string Edrpou { get; set; }
         public string IcdGrDiagnoz { get; set; } // код группы МКХ в которую входит диагноз
+        public string IcdKey { get; set; } // код группы МКХ в которую входит диагноз
     }
 
     // Язык интерфейса

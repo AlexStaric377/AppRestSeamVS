@@ -35,11 +35,16 @@ namespace AppRestSeam.Controllers
         }
 
         // GET api/<InterviewController>/5
-        [HttpGet("{KodProtokola}/{DetailsInterview}/{NewProtokol}/{PoiskInterview}")]
-        public async Task<ActionResult<Interview>> Get(string KodProtokola, string DetailsInterview, string NewProtokol, string PoiskInterview) //, string NewProtokol
+        [HttpGet("{KodProtokola}/{DetailsInterview}/{NewProtokol}/{PoiskInterview}/{GrDetail}")]
+        public async Task<ActionResult<Interview>> Get(string KodProtokola, string DetailsInterview, string NewProtokol, string PoiskInterview, string GrDetail) //, string NewProtokol
         {
             
             Interview _interview = new Interview();
+            if (GrDetail.Trim() != "0")
+            {
+                List<Interview> _listnterview = await db.Interviews.Where(x => x.GrDetail.Contains(GrDetail)).ToListAsync();
+                return Ok(_listnterview);
+            }
             if (PoiskInterview.Trim() != "0")
             {
                 List<Interview> _listnterview = await db.Interviews.Where(x => x.NametInterview.Contains(PoiskInterview)).ToListAsync();
