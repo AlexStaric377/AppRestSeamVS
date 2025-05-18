@@ -45,9 +45,13 @@ namespace AppRestSeam.Controllers
                 CompletedInterview _content = new CompletedInterview();
 
                 if (db.CompletedInterviews.Count() > 0)
-                { 
-                    int maxid = await db.CompletedInterviews.MaxAsync(p => p.Id);
-                    if(maxid !=0) _content = await db.CompletedInterviews.FirstOrDefaultAsync(x => x.Id == maxid );               
+                {
+                    int ComplCount = db.CompletedInterviews.Count();
+
+                    List<CompletedInterview> cmp = await db.CompletedInterviews.OrderBy(x => x.KodComplInterv).ToListAsync();
+                    string maxid = cmp[ComplCount-1].KodComplInterv;
+                   
+                    _content = await db.CompletedInterviews.FirstOrDefaultAsync(x => x.KodComplInterv == maxid);               
                 }
 
                 return Ok(_content);
